@@ -1,0 +1,11 @@
+/* src/styles/dashboard.css */
+.container {
+  max-width: 800px; /* Limit the width of the dashboard */
+}
+/* .form-select{
+  width: 80%;
+} */
+
+.ShowTasks{
+
+}
