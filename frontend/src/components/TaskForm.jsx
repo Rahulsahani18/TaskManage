@@ -73,7 +73,6 @@ const TaskForm = () => {
                     title,
                     description,
                     dueDate,
-                    assignedUser,
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`,
