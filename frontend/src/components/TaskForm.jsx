@@ -55,18 +55,32 @@ const TaskForm = () => {
         fetchUsers();
     }, [token, location.state]);
 
-    const handleNonAdminSubmit = async () => {
+   const handleNonAdminSubmit = async () => {
         try {
-            await axios.put(`http://localhost:5000/api/tasks/${location.state.task._id}`, {
-                title,
-                description,
-                dueDate,
-                assignedUser,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            if(isUpdating && location.state.task){
+                await axios.put(`http://localhost:5000/api/tasks/${location.state.task._id}`, {
+                    title,
+                    description,
+                    dueDate,
+                    assignedUser,
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            }else{
+                await axios.post('http://localhost:5000/api/tasks', {
+                    title,
+                    description,
+                    dueDate,
+                    assignedUser,
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            }
+          
 
             // Re-fetch tasks instead of navigating
             navigate('/tasks')
